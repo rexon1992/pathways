@@ -1,0 +1,9 @@
+{
+    "path" : "~/Github/pathways",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

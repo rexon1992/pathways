@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1534190172893.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C78BB2B9",
+    "lastKnownWriteTime" : 1534191363,
+    "last_content_update" : 1534191363455,
+    "path" : "~/Github/pathways/R/transition.R",
+    "project_path" : "R/transition.R",
+    "properties" : {
+        "cursorPosition" : "7,166",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

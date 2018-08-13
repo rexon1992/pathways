@@ -1,0 +1,72 @@
+#' Transition from model name to default names
+#'
+#' Replaces model indicator names in the raw data file aready in the pathways template by default indicator names using the tranistion file matching both indicator names, deletes all duplicate values and generates notes file if the notes arguement value is set to 1
+#' @param d_file A string containing raw data file name without the extension
+#' @param tr_file A string containing transition file name without the extension
+#' @param notes A binary value for the arguement note which generates a file to add conversion factors and notes
+#' @param prod_ind_list Path to the file containing list of indicators on the portal currently in Emissions Scenarios>Indicators>ind_list_production.xlsx
+#' @export
+
+library(readxl)
+
+transition<-function(d_file,tr_file,notes,prod_ind_list)
+{
+  data<-read.csv(paste(d_file,".csv",sep=""),header=T,check.names=F,stringsAsFactors=F)
+  tr<-read.csv(paste(tr_file,".csv",sep=""),header=T,check.names=F,stringsAsFactors=F)
+  assigned<-which(tr$`Default Indicator Name`!="")
+
+  ind_tr<-match(data$`Model Indicator Name`,tr$`Model Indicator Name`[assigned])
+
+  data$`Model Indicator Name`<-tr$`Default Indicator Name`[assigned][ind_tr]
+
+  colnames(data)[which(colnames(data)=="Model Indicator Name")]<-"Default Indicator Name"
+
+  del<-which(is.na(data$`Default Indicator Name`)==T)
+  if(length(del)>=1){
+    data<-data[-del,]
+  }
+
+  scenario<-levels(factor(data$Scenario))
+  region<-levels(factor(data$Region))
+
+  for (s in 1:length(scenario))
+  {
+    for (r in 1:length(region))
+    {
+      vect<-data$`Default Indicator Name`[which(data$Region==region[r] & data$Scenario==scenario[s])]
+      dup_ind<-vect[which(duplicated(vect)==TRUE)]
+      #print(scenario[s])
+      #print(region[r])
+      #print(length(dup_ind))
+
+      dup_ind_lev<-levels(factor(dup_ind))
+
+      if (length(dup_ind_lev)>=1){
+        for (d in 1:length(dup_ind_lev))
+        {
+          ind<-which(data$Region==region[r] & data$Scenario==scenario[s] & data$`Default Indicator Name`==dup_ind_lev[d])
+          data<-data[-(ind[2:length(ind)]),]
+        }
+      }
+    }
+  }
+
+  write.csv(data,paste(d_file,"_UL.csv",sep=""),row.names=F,na="")
+
+  if(notes==1)
+  {
+    prod_ind_list<-read_excel(prod_ind_list,sheet = "ind_list_production_temp",col_names = TRUE)
+    indicators<-unique(tr$`Default Indicator Name`)
+    model_name<-rep("",length(indicators))
+    unit_entry<-tr$`Unit of Entry`[match(indicators,tr$`Default Indicator Name`)]
+    default_unit<-prod_ind_list$`Standardized Unit`[match(indicators,prod_ind_list$`Default Indicator Name`)]
+    conversion<-rep("",length(indicators))
+    note<-tr$Note[match(indicators,tr$`Default Indicator Name`)]
+
+    notes_file<-data_frame(indicators,model_name,unit_entry,default_unit,conversion,note)
+
+    colnames(notes_file)<-c("Default Indicator Name","Model Name","Unit of Entry","Default Unit","Conversion Factor","Note")
+
+    write.csv(notes_file,paste(d_file,"_notes.csv",sep=""),row.names=F,na="")
+  }
+}
