@@ -63,7 +63,7 @@ transition<-function(d_file,tr_file,notes,prod_ind_list)
     conversion<-rep("",length(indicators))
     note<-tr$Note[match(indicators,tr$`Default Indicator Name`)]
 
-    notes_file<-data_frame(indicators,model_name,unit_entry,default_unit,conversion,note)
+    notes_file<-data.frame(indicators,model_name,unit_entry,default_unit,conversion,note)
 
     colnames(notes_file)<-c("Default Indicator Name","Model Name","Unit of Entry","Default Unit","Conversion Factor","Note")
 
