@@ -3,22 +3,33 @@
 pathways
 ========
 
+Overview
+--------
+
 This package contains functions to process data for pathways. It contains functions to generate transition file and to transition from model indicator names to default indicator names. It also contains other functions to process data initially like delete rows, fill cells, find text etc.
 
 Installation
 ------------
 
-You can install pathways from github with:
+You can install pathways from github using devtools.
+
+If you are using devtools for the first time you will need to install it using:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("rexon1992/pathways")
+install.packages("devtools")
+```
+
+You can install pathways using:
+
+``` r
+library("devtools")
+install_github("rexon1992/pathways")
 ```
 
 Example
 -------
 
-This is a basic example which how you can use the transition function in the package:
+This is an example which shows how the transition function in the package can be used:
 
 ``` r
 library(pathways)
