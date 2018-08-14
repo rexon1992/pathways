@@ -50,10 +50,20 @@ transition<-function(d_file,tr_file,notes,prod_ind_list)
       }
     }
   }
+  default_names<-c("Model","Scenario","Region","Default Indicator Name","Unit of Entry")
+  match<-match(default_names,names(data))
+  na<-which(is.na(match)==T)
+  if(length(na)>=1){
+    to_add<-paste(default_names[which(is.na(match)==T)],collapse = ", ")
+    stop(paste("Columns ",to_add," missing from the input file",sep=""  ))
+    #print(paste("Headers of the input file do not match the default format: Add columns ",to_add,sep=""  ))
+  }
+  if(length(na)<1){
+    write.csv(data,paste(d_file,"_UL.csv",sep=""),row.names=F,na="")
+  }
 
-  write.csv(data,paste(d_file,"_UL.csv",sep=""),row.names=F,na="")
 
-  if(notes==1)
+  if(notes==1 & length(na)<1)
   {
     prod_ind_list<-read_excel(prod_ind_list,sheet = "ind_list_production_temp",col_names = TRUE)
     indicators<-unique(tr$`Default Indicator Name`)
