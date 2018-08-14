@@ -22,7 +22,7 @@ install.packages("devtools")
 You can install pathways using:
 
 ``` r
-library("devtools")
+library(devtools)
 install_github("rexon1992/pathways")
 ```
 

@@ -8,7 +8,8 @@ gen_tr_file<-function(d_file){
   indicators<-unique(data$`Model Indicator Name`)
   units<-data$`Unit of Entry`[match(indicators,data$`Model Indicator Name`)]
   default_name<-rep("",length(indicators))
-  tr<-data.frame(indicators,units,default_name)
-  colnames(tr)<-c("Model Indicator Name","Unit of Entry","Default Indicator Name")
+  note<-rep("",length(indicators))
+  tr<-data.frame(indicators,units,default_name,note)
+  colnames(tr)<-c("Model Indicator Name","Unit of Entry","Default Indicator Name","Note")
   write.csv(tr,paste(d_file,"tr.csv",sep="_"),row.names=F,na="")
 }
