@@ -16,4 +16,5 @@ add_rows<-function(data_frame,first_col,last_col){
     temp<-data[l,c(which(names(data)==first_col):which(names(data)==last_col))]
     sum=sum+temp
   }
+  return(sum)
 }
