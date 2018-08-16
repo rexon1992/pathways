@@ -33,7 +33,7 @@ This is an example which shows how the transition function in the package can be
 
 ``` r
 library(pathways)
-transition("example_inputs/CPM_raw_data","example_inputs/CMP_TR",notes = 1,"example_inputs/ind_list_production.xlsx")
+transition("example/CPM_raw_data","example/CMP_TR",notes = 1,"example/ind_list_production.xlsx")
 ```
 
 This command will write a datafile into the directory called CPM\_raw\_data\_UL.csv with the model indicator names replaced by default indicator names and as the notes attribute is set to 1 it will also write a file called CPM\_raw\_data\_notes.csv into the directory which can be used to add conversion factors and notes for the indicators.
