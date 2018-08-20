@@ -139,6 +139,6 @@ This will generate and write a file called "rr_rawdata_sen_meta_ul.csv" which co
 ## Uploading the Data on Pathways Portal
 
 Once all the files are created and updated upload them in the following order
-1. rr_rawdata_notes.csv
-2. rr_rawdata_sen_meta_ul.csv
-3. rr_rawdata_ul.csv
+  + rr_rawdata_notes.csv
+  + rr_rawdata_sen_meta_ul.csv
+  + rr_rawdata_ul.csv
