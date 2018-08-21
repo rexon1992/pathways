@@ -108,7 +108,18 @@ This will replace all the model indicator names with corresponding defatul indic
 Following is an example of an upload file
 
 ``` r
-#Upload file sample
+#>        Model        Region          Scenario                                  Default Indicator Name Unit of Entry       2016       2017      2018       2019
+#>190        RR United States      HIGH NUCLEAR            Emissions|CO2 Emissions by Sector|Productive     MEGATONNE  1309.0257  1281.5625  1276.361  1277.6667
+#>191        RR United States AEO2015 REFERENCE Buildings|Residential building GHG Emissions by Gas|CO2     MEGATONNE   971.6919   967.3204   971.834   977.2520
+#>192        RR United States          HIGH CCS Buildings|Residential building GHG Emissions by Gas|CO2     MEGATONNE  1048.2860  1038.1109  1037.936  1046.8821
+#>193        RR United States   HIGH RENEWABLES Buildings|Residential building GHG Emissions by Gas|CO2     MEGATONNE  1058.8847  1034.0865  1037.559  1039.1316
+#>194        RR United States   MIXED RESOURCES Buildings|Residential building GHG Emissions by Gas|CO2     MEGATONNE  1047.3803  1025.2312  1018.146  1011.5801
+#>195        RR United States      HIGH NUCLEAR Buildings|Residential building GHG Emissions by Gas|CO2     MEGATONNE  1061.0213  1024.0253  1008.834   999.8088
+#>196        RR United States AEO2015 REFERENCE        Emissions|CO2 Emissions by Sector|Transportation     MEGATONNE  1929.4430  1920.1862  1921.254  1917.1024
+#>197        RR United States      HIGH NUCLEAR        Emissions|CO2 Emissions by Sector|Transportation     MEGATONNE  1930.8548  1920.5908  1919.715  1914.0895
+#>198        RR United States   HIGH RENEWABLES        Emissions|CO2 Emissions by Sector|Transportation     MEGATONNE  1931.5498  1920.2347  1919.035  1912.5660
+#>199        RR United States   MIXED RESOURCES        Emissions|CO2 Emissions by Sector|Transportation     MEGATONNE  1931.4653  1920.5047  1919.395  1913.1916
+#>200        RR United States          HIGH CCS             Emissions|CO2 Emissions by Sector|Buildings     MEGATONNE 2 068.5684  2051.7622  2055.253  2078.1373
 ```
 
 If the value of notes is set to 1 (like it is in this case) it will also generate and write a file called "rawdata\_notes.csv" to enter notes and conversion factors for indicators. Also, if the value of notes is set to one the path to file containing the most updated list of indicators on the portal has to be specified for it to work. As the file is maintained in an ".xlsx" format, this input acccepts an xlsx file.
@@ -118,7 +129,16 @@ The notes file contains list of all the indicators in the upload file, unit of e
 Following is an example of a notes file
 
 ``` r
-#notes file sample
+#>                                    Default Indicator Name Model Name          Unit of Entry       Default Unit  Conversion Factor                                    Note
+#>1                Financial|Cumulative Net Investment|Coal         RR Running Sum of 2014 $T billion US$2016/yr                                                               
+#>2         Financial|Cumulative Net Investment|Natural Gas         RR Running Sum of 2014 $T billion US$2016/yr                                                               
+#>3  Financial|Cumulative Net Investment|Petroleum Products         RR Running Sum of 2014 $T billion US$2016/yr                                                               
+#>4  Financial|Cumulative Net Investment|Total Fossil Fuels         RR Running Sum of 2014 $T billion US$2016/yr                                                               
+#>5  Buildings|Commercial building GHG Emissions by Gas|CO2         RR              MEGATONNE         Mt CO2e/yr                                                               
+#>6            Emissions|CO2 Emissions by Sector|Productive         RR              MEGATONNE              Mt/yr                                                               
+#>7 Buildings|Residential building GHG Emissions by Gas|CO2         RR              MEGATONNE              Mt/yr                                                               
+#>8        Emissions|CO2 Emissions by Sector|Transportation         RR              MEGATONNE              Mt/yr                                                               
+#>9             Emissions|CO2 Emissions by Sector|Buildings         RR              MEGATONNE              Mt/yr                          Sum of  residential and commercial emissions
 ```
 
 The column "Default Unit" is made avaliable just for reference and to make assigning conversion factors easier. This column has to be deleted for the file to be uploaded on the portal.

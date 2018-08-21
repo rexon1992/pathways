@@ -100,7 +100,7 @@ transition_with_add<-function(d_file,tr_file,notes,prod_ind_list)
   {
     prod_ind_list<-read_excel(prod_ind_list,sheet = "ind_list_production_temp",col_names = TRUE)
     indicators<-unique(tr$`Default Indicator Name`)
-    model_name<-rep("",length(indicators))
+    model_name<-unique(data$Model)[1]
     unit_entry<-tr$`Unit of Entry`[match(indicators,tr$`Default Indicator Name`)]
     default_unit<-prod_ind_list$`Standardized Unit`[match(indicators,prod_ind_list$`Default Indicator Name`)]
     conversion<-rep("",length(indicators))
