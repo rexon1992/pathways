@@ -76,7 +76,7 @@ gen_tr_file("example/rr_rawdata")
 
 This will generate a csv file called rr\_rawdata\_tr.csv in the same directory as the raw data file. The transition file contains a list of all the indicators in the raw data and the original units of entry.
 
-It contains empty columns to called "Default Indicator Names". Enter the The Default Indicator Names corresponding to Model Indicator Names in this column. If any model indicator does not have a matching indicator leaving the default indicator name field blank will delete the indicator and all the data associated with it from the final file.
+It contains an empty column called "Default Indicator Names". Enter the The Default Indicator Names corresponding to Model Indicator Names in this column. If any model indicator does not have a matching indicator leaving the default indicator name field blank will delete the indicator and all the data associated with it from the final file.
 
 It is also possible to add two indicators and assign it to one default indicator. In order to do so add a row below the Model Indicator Name column in the transition file with the indicators to be added seperated with a "+" sign (e.g. Emissions by Sector|COMMERCIAL+Emissions by Sector|RESIDENTIAL), add the unit of entry and enter the Default Indicator Name to which the sum has to be assigned
 
@@ -124,4 +124,8 @@ This will generate and write a file called "rr\_rawdata\_sen\_meta\_ul.csv" whic
 Uploading the Data on Pathways Portal
 -------------------------------------
 
-Once all the files are created and updated upload them in the following order + rr\_rawdata\_notes.csv + rr\_rawdata\_sen\_meta\_ul.csv + rr\_rawdata\_ul.csv
+Once all the files are created and updated upload them in the following order
+
+1.  rr\_rawdata\_notes.csv
+2.  rr\_rawdata\_sen\_meta\_ul.csv
+3.  rr\_rawdata\_ul.csv

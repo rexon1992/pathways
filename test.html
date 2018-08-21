@@ -67,7 +67,7 @@ body {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pathways)
 <span class="kw">gen_tr_file</span>(<span class="st">&quot;example/rr_rawdata&quot;</span>)</code></pre></div>
 <p>This will generate a csv file called rr_rawdata_tr.csv in the same directory as the raw data file. The transition file contains a list of all the indicators in the raw data and the original units of entry.</p>
-<p>It contains empty columns to called &quot;Default Indicator Names&quot;. Enter the The Default Indicator Names corresponding to Model Indicator Names in this column. If any model indicator does not have a matching indicator leaving the default indicator name field blank will delete the indicator and all the data associated with it from the final file.</p>
+<p>It contains an empty column called &quot;Default Indicator Names&quot;. Enter the The Default Indicator Names corresponding to Model Indicator Names in this column. If any model indicator does not have a matching indicator leaving the default indicator name field blank will delete the indicator and all the data associated with it from the final file.</p>
 <p>It is also possible to add two indicators and assign it to one default indicator. In order to do so add a row below the Model Indicator Name column in the transition file with the indicators to be added seperated with a &quot;+&quot; sign (e.g. Emissions by Sector|COMMERCIAL+Emissions by Sector|RESIDENTIAL), add the unit of entry and enter the Default Indicator Name to which the sum has to be assigned</p>
 <p>It also contains an empty column calles &quot;Note&quot;. Enter any notes (for e.g. any subtle difference between scope of model indicator and default indicator) if any. These notes will be carried forward while uploading the notes upload template.</p>
 <p>Following is an example of a transition file generated</p>
@@ -90,7 +90,12 @@ body {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#gen_sen_meta(&quot;example/rr_rawdata_UL.csv&quot;,&quot;example/sen_meta_template.csv&quot;)</span></code></pre></div>
 <p>This will generate and write a file called &quot;rr_rawdata_sen_meta_ul.csv&quot; which contains minimum information like the scenario name and the model name in the default template which can be directly uploaded on the portal the create scenarion. To add more information about scenarios this file can be edited and re-uploaded</p>
 <h2 id="uploading-the-data-on-pathways-portal">Uploading the Data on Pathways Portal</h2>
-<p>Once all the files are created and updated upload them in the following order + rr_rawdata_notes.csv + rr_rawdata_sen_meta_ul.csv + rr_rawdata_ul.csv</p>
+<p>Once all the files are created and updated upload them in the following order</p>
+<ol>
+<li>rr_rawdata_notes.csv</li>
+<li>rr_rawdata_sen_meta_ul.csv</li>
+<li>rr_rawdata_ul.csv</li>
+</ol>
 
 </body>
 </html>
