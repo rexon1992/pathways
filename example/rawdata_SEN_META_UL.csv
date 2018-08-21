@@ -1,0 +1,16 @@
+"Category","Indicator","Definition/Input Explanation","Data Type","Picklist options (Data Entry)","Scenario 1","Scenario 2","Scenario 3","Scenario 4","Scenario 5"
+"Model","Model Abbreviation","What is the model abbreviation?","Text (Alphanumeric)","","RR","RR","RR","RR","RR"
+"Scenario context","Scenario name","What is the scenario name?","Text (Alphanumeric)","","HIGH CCS","HIGH NUCLEAR","HIGH RENEWABLES","MIXED RESOURCES","AEO2015 REFERENCE"
+"Scenario context","Scenario year","In which year was the scenario created?","Text (Alphanumeric)","",,,,,
+"Scenario context","Category","What category does this scenario fit under?","Picklist","BAU/reference; NDCs; NDCs-Conditional; NDCs-Unconditional; Decarbonization; not specified",,,,,
+"Scenario context","Purpose/Objective","What was the original purpose or objective of the scenario? Why was it created?","Text (Alphanumeric)","",,,,,
+"Scenario context","Description","What is a description of the scenario?","Text (Alphanumeric)","",,,,,
+"Scenario context","Reference","Was the scenario used in a publication? provide reference","Text (Alphanumeric)","",,,,,
+"Scenario context","URL","Is the scenario originally available online? Provide URL ","Text (Alphanumeric)","",,,,,
+"Inputs","Policy Coverage","What policies are covered by the scenario?","Picklist","accelerated deployment of energy technologies; air pollution measures; border tariff; cap-and-trade; carbon price; carbon tax; CO2 concentration target; electric vehicles; emissions cap; emissions trading; energy efficiency standards; energy tax; feed-in tariff; fuel economy standards; fuel switching; import tax; investment incentives; methane leakage; performance standards; permit trading; production subsidies; radiative forcing limit; renewable portfolio standards; regulations; research and development (R&D) measures; revenue recycling; subsidies; tax credits and incentives; taxes; technology capacity targets; technology switching; temperature limit; tradable certificates; permits or allowances",,,,,
+"Inputs","Technology Coverage","What technologies are covered by the scenario?","Picklist","BECCS; BioCCS; bioenergy; CCS; cogeneration; combined heat and power (CHP); distributed generation; electric vehicles; energy efficiency; energy use technologies; fuel cells; full electrification in transport; heat pumps; hydraulic power; hydrogen; hydrogen systems; IGCC; nuclear; renewables; RES; storage",,,,,
+"Inputs","Socioeconomics","Which socio-economic assumptions where used for this scenario? If one of the shared socio-economic pathways (SSP's) was used, please specifiy which one.","Text (Alphanumeric)","",,,,,
+"Inputs","Climate Target","What climate targets are included in this scenario (e.g. 450 ppm, 2 DC, etc.)? Optional: in what year does the target have to be achieved? Is overshoot allowed?","Text (Alphanumeric)","",,,,,
+"Inputs","Other Target","Is there another target type included in the scenario? E.g. energy access, poverty alleviation.","Text (Alphanumeric)","",,,,,
+"Inputs","Burden Sharing","Which burden sharing regime was assumed for this scenario, if any?","Text (Alphanumeric)","",,,,,
+"Inputs","Discount Rates","What social and private discount rates are used in the model for this scenario?","Text (Alphanumeric)","",,,,,

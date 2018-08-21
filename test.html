@@ -35,8 +35,10 @@ body {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</code></pre></div>
 <p>You can install pathways using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
-<span class="kw">install_github</span>(<span class="st">&quot;rexon1992/pathways&quot;</span>)</code></pre></div>
+<span class="kw">install_github</span>(<span class="st">&quot;rexon1992/pathways&quot;</span>)
+<span class="kw">library</span>(pathways)</code></pre></div>
 <h2 id="general-workflow">General Workflow</h2>
+<p>This is an example of a typical workflow. Note that all the arguements passed into the functions are for illustrative purpose. File names and other arguements may depending on the nomenclature user chooses. Please read the function help pages for more information.</p>
 <h3 id="converting-source-data-to-raw-data">Converting Source Data to Raw Data</h3>
 <p>Below is the sample original source data file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#&gt; A tibble: 720 x 5</span>
@@ -64,9 +66,8 @@ body {
 <h3 id="transforming-the-raw-data-and-generating-other-supporting-files">Transforming the Raw Data and generating other supporting files</h3>
 <p>After the Source Data is converted to Raw Data format, the names of the indicators have to be changed to Default Indicator Names.</p>
 <p>Use the following command to generate a transition file</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pathways)
-<span class="kw">gen_tr_file</span>(<span class="st">&quot;example/rr_rawdata&quot;</span>)</code></pre></div>
-<p>This will generate a csv file called rr_rawdata_tr.csv in the same directory as the raw data file. The transition file contains a list of all the indicators in the raw data and the original units of entry.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gen_tr_file</span>(<span class="st">&quot;example/rawdata.csv&quot;</span>)</code></pre></div>
+<p>This will generate a csv file called &quot;rawdata_TR.csv&quot; in the same directory as the raw data file. The transition file contains a list of all the indicators in the raw data and the original units of entry.</p>
 <p>It contains an empty column called &quot;Default Indicator Names&quot;. Enter the The Default Indicator Names corresponding to Model Indicator Names in this column. If any model indicator does not have a matching indicator leaving the default indicator name field blank will delete the indicator and all the data associated with it from the final file.</p>
 <p>It is also possible to add two indicators and assign it to one default indicator. In order to do so add a row below the Model Indicator Name column in the transition file with the indicators to be added seperated with a &quot;+&quot; sign (e.g. Emissions by Sector|COMMERCIAL+Emissions by Sector|RESIDENTIAL), add the unit of entry and enter the Default Indicator Name to which the sum has to be assigned</p>
 <p>It also contains an empty column calles &quot;Note&quot;. Enter any notes (for e.g. any subtle difference between scope of model indicator and default indicator) if any. These notes will be carried forward while uploading the notes upload template.</p>
@@ -79,22 +80,24 @@ body {
 <span class="co">#&gt;5 Emissions by Sector|COMMERCIAL+Emissions by Sector|RESIDENTIAL     MEGATONNE                            </span></code></pre></div>
 <p>Note: running the gen_tr_file function will replace the existing transition file. Hence this command must be run only once unless there is a change in model indicator names or additions or subtractions of model indicators.</p>
 <p>After the transition file is updated, all the indicators which need to be assigned to default indcators are assigned and the file is saved, run the following command to convert the raw data in to upload data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#transition_with_add(&quot;example/rr_rawdata&quot;,&quot;example/rr_rawdata_tr&quot;,notes = 1, &quot;example/ind_list_production.xlsx&quot;)</span></code></pre></div>
-<p>This will replace all the model indicator names with corresponding defatul indictor names, add the indicators which are specified to be added in the transition file and write a file called rr_rawdata_UL.csv in the same directory as the transition file. This can be uploaded on the portal.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">transition_with_add</span>(<span class="st">&quot;example/rawdata.csv&quot;</span>,<span class="st">&quot;example/rawdata_TR_updated.csv&quot;</span>,<span class="dt">notes =</span> <span class="dv">1</span>, <span class="st">&quot;example/ind_list_production.xlsx&quot;</span>)</code></pre></div>
+<p>This will replace all the model indicator names with corresponding defatul indictor names, add the indicators which are specified to be added in the transition file and write a file called rawdata_UL.csv in the same directory as the transition file. This can be uploaded on the portal.</p>
 <p>Following is an example of an upload file</p>
-<p>If the value of notes is set to 1 (like it is in this case) it will also generate and write a file called &quot;rr_rawdata_notes.csv&quot; to enter notes and conversion factors for indicators. Also, if the value of notes is set to one the path to file containing the most updated list of indicators on the portal has to be specified for it to work. As the file is maintained in an &quot;.xlsx&quot; format, this input acccepts an xlsx file.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Upload file sample</span></code></pre></div>
+<p>If the value of notes is set to 1 (like it is in this case) it will also generate and write a file called &quot;rawdata_notes.csv&quot; to enter notes and conversion factors for indicators. Also, if the value of notes is set to one the path to file containing the most updated list of indicators on the portal has to be specified for it to work. As the file is maintained in an &quot;.xlsx&quot; format, this input acccepts an xlsx file.</p>
 <p>The notes file contains list of all the indicators in the upload file, unit of entry (Model Unit), Default Unit (standardize pathways unit), an empty column for model name, an empty column to specify conversion factors and an empty column to specify notes if any. The notes entered in the transition file will be automatically assigned to corresponding indicators.</p>
 <p>Following is an example of a notes file</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#notes file sample</span></code></pre></div>
 <p>The column &quot;Default Unit&quot; is made avaliable just for reference and to make assigning conversion factors easier. This column has to be deleted for the file to be uploaded on the portal.</p>
 <p>The following command will generate a scenario meta information file</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#gen_sen_meta(&quot;example/rr_rawdata_UL.csv&quot;,&quot;example/sen_meta_template.csv&quot;)</span></code></pre></div>
-<p>This will generate and write a file called &quot;rr_rawdata_sen_meta_ul.csv&quot; which contains minimum information like the scenario name and the model name in the default template which can be directly uploaded on the portal the create scenarion. To add more information about scenarios this file can be edited and re-uploaded</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gen_sen_meta</span>(<span class="st">&quot;example/rawdata_UL.csv&quot;</span>,<span class="st">&quot;example/sen_meta_template.csv&quot;</span>)</code></pre></div>
+<p>This will generate and write a file called &quot;rr_rawdata_SEN_META_UL.csv&quot; which contains minimum information like the scenario name and the model name in the default template which can be directly uploaded on the portal the create scenarion. To add more information about scenarios this file can be edited and re-uploaded</p>
 <h2 id="uploading-the-data-on-pathways-portal">Uploading the Data on Pathways Portal</h2>
 <p>Once all the files are created and updated upload them in the following order</p>
 <ol>
-<li>rr_rawdata_notes.csv</li>
-<li>rr_rawdata_sen_meta_ul.csv</li>
-<li>rr_rawdata_ul.csv</li>
+<li>rawdata_NOTES.csv</li>
+<li>rawdata_SEN_META_UL.csv</li>
+<li>rawdata_UL.csv</li>
 </ol>
 
 </body>

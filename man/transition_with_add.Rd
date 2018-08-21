@@ -7,9 +7,9 @@
 transition_with_add(d_file, tr_file, notes, prod_ind_list)
 }
 \arguments{
-\item{d_file}{A string containing raw data file name without the extension}
+\item{d_file}{Path to the raw data file}
 
-\item{tr_file}{A string containing transition file name without the extension}
+\item{tr_file}{Path to the transition file}
 
 \item{notes}{A binary value for the arguement note which generates a file to add conversion factors and notes}
 

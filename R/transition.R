@@ -1,8 +1,8 @@
 #' Transition from model name to default names
 #'
 #' Replaces model indicator names in the raw data file aready in the pathways template by default indicator names using the tranistion file matching both indicator names, deletes all duplicate values and generates a file to enter notes
-#' @param d_file A string containing raw data file name without the extension
-#' @param tr_file A string containing transition file name without the extension
+#' @param d_file Path to the raw data file
+#' @param tr_file Path to the transition file
 #' @param notes A binary value for the arguement note which generates a file to add conversion factors and notes
 #' @param prod_ind_list Path to the file containing list of indicators on the portal currently in Emissions Scenarios>Indicators>ind_list_production.xlsx
 #' @return A data file with all the model indicator names replaced with default indicator names and all duplicates daletes. If notes is set to 1 a file to enter notes
@@ -11,8 +11,8 @@
 transition<-function(d_file,tr_file,notes,prod_ind_list)
 {
   library(readxl)
-  data<-read.csv(paste(d_file,".csv",sep=""),header=T,check.names=F,stringsAsFactors=F)
-  tr<-read.csv(paste(tr_file,".csv",sep=""),header=T,check.names=F,stringsAsFactors=F)
+  data<-read.csv(d_file,header=T,check.names=F,stringsAsFactors=F)
+  tr<-read.csv(tr_file,header=T,check.names=F,stringsAsFactors=F)
   assigned<-which(tr$`Default Indicator Name`!="")
 
   ind_tr<-match(data$`Model Indicator Name`,tr$`Model Indicator Name`[assigned])
@@ -59,7 +59,7 @@ transition<-function(d_file,tr_file,notes,prod_ind_list)
     #print(paste("Headers of the input file do not match the default format: Add columns ",to_add,sep=""  ))
   }
   if(length(na)<1){
-    write.csv(data,paste(d_file,"_UL.csv",sep=""),row.names=F,na="")
+    write.csv(data,gsub(".csv","_UL.csv",d_file),row.names=F,na="")
   }
 
 
@@ -77,6 +77,6 @@ transition<-function(d_file,tr_file,notes,prod_ind_list)
 
     colnames(notes_file)<-c("Default Indicator Name","Model Name","Unit of Entry","Default Unit","Conversion Factor","Note")
 
-    write.csv(notes_file,paste(d_file,"_notes.csv",sep=""),row.names=F,na="")
+    write.csv(notes_file,gsub(".csv","_NOTES.csv",d_file),row.names=F,na="")
   }
 }

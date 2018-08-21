@@ -4,7 +4,7 @@
 #'
 #' @param ul_dfile_path Path to the data file for which the template is to be generated
 #' @param meta_template_path Path to the default scenario meta template file in the csv format
-#'
+#' @export
 gen_sen_meta<-function(ul_dfile_path, meta_template_path){
   template<-read.csv(meta_template_path, header=T, check.names = F, stringsAsFactors = F)
   data<-read.csv(ul_dfile_path,header=T, check.names = F, stringsAsFactors = F)
@@ -18,7 +18,7 @@ gen_sen_meta<-function(ul_dfile_path, meta_template_path){
   }
 
   template<-cbind(template,sen)
-  write.csv(template,gsub("UL.csv","sen_meta_ul.csv",ul_dfile_path),row.names = F,na="")
+  write.csv(template,gsub("UL.csv","SEN_META_UL.csv",ul_dfile_path),row.names = F,na="")
 }
 
 

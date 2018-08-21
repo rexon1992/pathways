@@ -7,7 +7,7 @@
 gen_tr_file(d_file)
 }
 \arguments{
-\item{d_file}{A string containing name of the data file excluding the extension}
+\item{d_file}{Path to the data file}
 }
 \description{
 This function generates and writes a file into the working directory with all the indicators avaliable in a dataset, its units and an empty column called "Default Indicator Name" to match model indicators to default indicators and writes. After updating the file it can then be used as an input to the transition function to replace model indicator names with default indicator names.
